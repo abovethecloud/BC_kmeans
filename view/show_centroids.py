@@ -2,11 +2,9 @@
 
 
 import pylab
-import time
 
 
 def represent_2D_centroids(X, assign, centroids):
-    time.sleep(0.5)
     pylab.cla()
     pylab.plot(X[assign == 0, 0], X[assign == 0, 1], '*b',
          X[assign == 1, 0], X[assign == 1, 1], '*r',
