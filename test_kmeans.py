@@ -51,4 +51,4 @@ else:
     print assign
 
 if len(mask) == 2:
-    sc.show(Y, assign, centroids)
+    sc.represent_2D_centroids(Y, assign, centroids)
