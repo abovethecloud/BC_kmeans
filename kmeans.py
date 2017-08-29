@@ -1,7 +1,7 @@
 """K-Means Clustering in Python 2.7"""
 import numpy as np
 import distance as dist
-import scipy as sp
+import centroid_computation as cen
 
 
 def k_means(X, K, maxIterN=1000, distance = "euclidian", c_type = "mean"):
@@ -25,8 +25,8 @@ def k_means(X, K, maxIterN=1000, distance = "euclidian", c_type = "mean"):
                 squared_distances[k] = dist.compute_distance(X[i], centroids[k], distance)
             assign[i] = np.argmin(squared_distances)
         for k in range(K):
-            mean = np.mean([X[np.where(assign == k)]], axis=1)[0]
-            centroids[k] = mean
+#            mean = np.mean([X[np.where(assign == k)]], axis=1)[0]
+            centroids[k] = cen.comp_centroid(X, assign, k)
         if np.array_equal(assign, previous_assign):
             break
         previous_assign = np.copy(assign)
