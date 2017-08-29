@@ -20,10 +20,10 @@ mask_conc_points = [9, 29]  # Takes only mean and worst measurement for the numb
                             # Best 2-class prediction found yet.
 
 mask = mask_all  # Change this parameter to assign one of the available masks
-Y = X[:, mask]  # Application of the mask.
+Y = X[:, mask_all]  # Application of the mask.
 
 """K_MEANS"""
-result = km.k_means(Y, K, distance="euclidian")
+result = km.k_means(Y, K, d_type="euclidian", c_type="mean")
 
 assign = result[0]  # Resulting assignment
 number_iter = result[1]  # Number of iteration of the K-MEANS algorithm
