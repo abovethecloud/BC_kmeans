@@ -21,12 +21,15 @@ def k_means(X, K, maxIterN=1000, d_type ="euclidian", c_type ="mean"):
         for i in range(len(X)):
             for k in range(K):
                 # Compute the distance of each point from the centroids
-                #squared_distances[k] = (np.linalg.norm(X[i] - centroids[k]))**2
                 squared_distances[k] = dist.compute_distance(X[i], centroids[k], d_type)
+            # Assign to closest class
             assign[i] = np.argmin(squared_distances)
+
         for k in range(K):
-#            mean = np.mean([X[np.where(assign == k)]], axis=1)[0]
+            # For each class, recompute the centroid
             centroids[k] = cen.comp_centroid(X, assign, k, c_type)
+
+        # Quit the cycle if the assignation doesn't change
         if np.array_equal(assign, previous_assign):
             break
         previous_assign = np.copy(assign)
