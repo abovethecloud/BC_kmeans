@@ -19,8 +19,8 @@ mask_all = range(2, 32)  # Takes all the parameters (excludes only ID and DIAGNO
 mask_conc_points = [9, 29]  # Takes only mean and worst measurement for the number of concavity points.
                             # Best 2-class prediction found yet.
 
-mask = mask_all  # Change this parameter to assign one of the available masks
-Y = X[:, mask_all]  # Application of the mask.
+mask = mask_conc_points  # Change this parameter to assign one of the available masks
+Y = X[:, mask]  # Application of the mask.
 
 """K_MEANS"""
 result = km.k_means(Y, K, d_type="euclidian", c_type="mean")
