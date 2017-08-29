@@ -1,8 +1,10 @@
 """K-Means Clustering in Python 2.7"""
 import numpy as np
+import distance as dist
+import scipy as sp
 
 
-def k_means(X, K, maxIterN=1000):
+def k_means(X, K, maxIterN=1000, distance = "euclidian", c_type = "mean"):
     """Given X a ndarray (requires numpy) containing the n-dim observations and K the number of classes, performs
     k-means algorithm with random initialization and returns an array with first element the chosen class for each
     observation (array with same length of X), second element the number of iterations, third element the centroids.
@@ -19,7 +21,8 @@ def k_means(X, K, maxIterN=1000):
         for i in range(len(X)):
             for k in range(K):
                 # Compute the distance of each point from the centroids
-                squared_distances[k] = (np.linalg.norm(X[i] - centroids[k]))**2
+                #squared_distances[k] = (np.linalg.norm(X[i] - centroids[k]))**2
+                squared_distances[k] = dist.compute_distance(X[i], centroids[k], distance)
             assign[i] = np.argmin(squared_distances)
         for k in range(K):
             mean = np.mean([X[np.where(assign == k)]], axis=1)[0]
