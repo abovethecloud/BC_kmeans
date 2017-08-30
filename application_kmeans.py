@@ -1,16 +1,16 @@
 """Application of k-means algorithm to the Breast Cancer Wisconsin (Diagnostic) Data Set"""
 from collections import Counter
-
 import numpy as np
-
-import kmeans as km
-from view import show_centroids as sc
 from IO import data_import as di
+from model import kmeans as km
+from view import show_centroids as sc
+
 
 """PRELIMINARY"""
 # Import of data and set the number of classes
-X = di.import_data("wdbc.data")
+X = di.import_data("data/wdbc.data")
 K = 2
+
 
 """MASK"""
 # The mask decides the parameters to take into account.
@@ -19,8 +19,10 @@ mask_all = range(2, 32)  # Takes all the parameters (excludes only ID and DIAGNO
 mask_conc_points = [9, 29]  # Takes only mean and worst measurement for the number of concavity points.
                             # Best 2-class prediction found yet.
 
-mask = mask_conc_points  # Change this parameter to assign one of the available masks
-Y = X[:, mask]  # Application of the mask.
+mask = mask_conc_points  # !! Change this parameter to assign one of the available masks
+
+Y = X[:, mask]  # Application of the mask. DO NOT CHANGE THIS
+
 
 """K_MEANS"""
 result = km.k_means(Y, K, d_type="euclidian", c_type="mean")
@@ -30,6 +32,7 @@ number_iter = result[1]  # Number of iteration of the K-MEANS algorithm
 centroids = result[2]  # The resulting centroids
 
 n_obs_class = Counter(assign)  # Counts the number of occurrences for each class
+
 
 """PRINT OUTPUT
 

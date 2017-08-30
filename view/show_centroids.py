@@ -2,12 +2,12 @@ r"""2D representation of up to 4 centroids. Requires pylab.
 Also, should problems arise with the module, see
 <<https://stackoverflow.com/questions/27630114/matplotlib-issue-on-os-x-importerror-cannot-import-name-thread>>
 """
-
-
 import pylab
 
 
 def represent_2D_centroids(X, assign, centroids):
+    """Represents 2D data given the class they have been assigned to (max 4 classes) along with the respective
+    centroids."""
     pylab.cla()
     # The following functions print up to 4 centroids with their respective assigned observations
     pylab.plot(X[assign == 0, 0], X[assign == 0, 1], '*b',
